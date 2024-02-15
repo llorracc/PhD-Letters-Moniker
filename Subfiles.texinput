@@ -1,0 +1,4 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*- 
+\subfile{Subfiles/Intro}
+\subfile{Subfiles/JMP}
+\subfile{Subfiles/Conclusion}

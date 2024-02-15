@@ -1,0 +1,19 @@
+\input{./econtexRoot.texinput}
+\documentclass[\econtexRoot/Letter]{subfiles}
+\onlyinsubfile{\externaldocument{\econtexRoot/Letter}} % Get xrefs -- esp to apndx -- from main file; only works if main file has already been compiled
+
+\begin{document}
+
+%\hypertarget{introduction}{}\par\section{Introduction}\notinsubfile{\label{sec:intro}}
+\setcounter{page}{0}\pagenumbering{arabic}
+
+[Things student wants CDC to be sure to say in intro - in particular, a clear explanation of why the dissertation internhship fits their research agenda, and why the institution would have an interest in having an intern work on whatever you propose to work on].
+
+\onlyinsubfile{\input{\LaTeXInputs/bibliography_blend}}
+
+\ifthenelse{\boolean{Web}}{}{
+  \onlyinsubfile{\captionsetup[figure]{list=no}}
+  \onlyinsubfile{\captionsetup[table]{list=no}}
+  \end{document} \endinput
+}
+
