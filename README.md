@@ -12,15 +12,15 @@ As a result, here is the suggested workflow. Please read the directions all the 
 
 3. In `personal-draft`, fill in the materials with your information:
 
-    a. Review content in `Letter.tex`. Replace {Mr} and {Spock} in `Letter.tex` with your personal and family names. Review the internship sentence.
+    a. Review content in `Letter.tex`. Replace {Mr} and {Spock} in `Letter.tex` with your personal and family names. Review the introductory sentence.
 
-    b. Update `Subfiles/Intro.tex`
+    b. Update `Subfiles/Intro.tex` to describe your work, fit for the position, etc.
 
-    c. Update `Subfiles/Conclusion.tex`
+    c. Update `Subfiles/JMP.tex` to describe your JMP and a few other relevant projects. 
     
-    d. Update `Subfiles/JMP.tex`
+    d. Update `Subfiles/Conclusion.tex` to summarize the argument.
 
-    e. You do **not** need to adjust `EmailAddress-To-Which-Letter-Will-Be-Sent.txt` or `Name-Of-Program.tex`; these are destination-specific inputs that CDC will use to generate the letters.
+    e. You do **not** need to adjust `EmailAddress-To-Which-Letter-Will-Be-Sent.txt`, `Name-Of-Program.tex`, or other similar `Name-Of` files; these are destination-specific inputs that CDC will use to generate the letters.
 
 4. *Commit locally only*. Do not push the branch. Your fork is public, because the original template repo is public, and you may not want all of the information you have filled in to be public.
 
