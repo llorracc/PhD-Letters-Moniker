@@ -29,7 +29,7 @@ Match the folder name to the `id:` field in `opportunity.md`.
 1. **Create a folder** under `letter-opportunities/` with a new slug.
 2. **Copy** `example-dissertation-internship/opportunity.md` as a starting point, or create `opportunity.md` from scratch using the schema below. For Fed-style **PhD Dissertation Intern** outreach, point `related_recipient_files` at **`email-templates/recipients/internship-dissertation/…`** (see `recipients/README.md`).
 3. **Fill YAML** (posting URL, deadlines, status, links to recipient files).
-4. **Add narrative** under the front matter (why it fits, what the letter must mention, checklist).
+4. **Add narrative** under the front matter (why it fits, what the letter must mention, checklist). For a destination where a paragraph on fit would help (an internship, a fellowship, a policy institution), add the facts CDC needs to write it, under "Facts for a paragraph on fit" as in the example.
 5. When you need outreach email: **create or update** the file under `email-templates/recipients/<org>/email@domain.md` and list its path in `related_recipient_files`.
 6. **Update `INDEX.md`** with a one-line row so you can scan everything quickly.
 

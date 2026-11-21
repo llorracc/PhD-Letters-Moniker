@@ -15,7 +15,9 @@ Refer to yourself with the macros from `student-macros.ltx`: `\PersonName{}`, `\
 
 Write what you did, specifically, and let the specifics speak. Leave every judgment to CDC: how good the
 work is, how you compare with others, what it says about you. His passages go where the red
-`[CDC: ...]` markers are, and you will not see them.
+`[CDC: ...]` markers are, and you will not see them. He may also add passages where nothing is marked:
+a comparison with other students after the opening, his own account of work you did with him, and a
+paragraph on why you suit a particular destination.
 
 - Write: "\PersonName{}'s paper estimates a life-cycle model with administrative tax data covering ten
   million households." Not: "The paper makes an important contribution."
@@ -53,8 +55,15 @@ everywhere, so each fact is changed in one place. Above all:
 - `\JMP` and `\JMPTitle`: your job market paper's link and exact title.
 - `\CVUrl`: a stable URL that always returns your latest CV. When it is set, `./Letter-make.sh` refreshes
   `JMFiles/CV.pdf` from it (see `JMFiles/README.md`).
-- Visa: `\Nationality`, `\VisaType`, `\STEMOPTYears`, or leave them empty. Set
-  `\OmitBackgroundVisaParagraph` to `yes` where a portal collects visa status separately.
+- `\ExpectedDegree` (when you expect the PhD, e.g. "May 2027"), `\PrimaryField` and `\SecondaryField`
+  (your job-market fields, as your job-market profile lists them). Whatever you fill in prints in
+  Background.
+- `\ReadyToTeach`: the courses you are prepared to teach, as one phrase ("undergraduate macroeconomics
+  and graduate computational methods"). It prints in Teaching. Committees hiring for teaching read it
+  closely.
+- Visa: `\Nationality` and `\VisaType` with their articles ("a German national", "an F-1 visa"), and
+  `\STEMOPTYears`; or leave them empty. Set `\OmitBackgroundVisaParagraph` to `yes` where a portal
+  collects visa status separately.
 - The pronoun macros.
 
 ## The sections: `Subfiles/`
@@ -67,18 +76,29 @@ can also use a different list for one destination.
   coauthorship, projects (Econ-ARK, for example), reading groups. A timeline of interactions, not an
   evaluation.
 - **background**: undergraduate and master's education, predoctoral work (employer, title, dates, what
-  you did, linked), and what it brought to your PhD. The visa sentence comes from the macros.
+  you did, linked), and what it brought to your PhD. If your path was unusual (a career before the PhD,
+  a move between programs or advisors, circumstances that shaped your interests), you may add the facts,
+  but only what you want mentioned; CDC decides whether it prints. The degree date, fields and visa
+  sentences come from the macros.
 - **jmp**: the question and why it matters, the data and methods, how you identify or estimate what you
   claim, the main findings with magnitudes, and what follows for the literature or for policy. Link the
-  paper, its code and its data where public.
+  paper, its code and its data where public. If it is joint work, one sentence on who did what.
+  Optionally, one figure a reader from another field can follow: put the file in `Figures/` and use
+  `\LetterFigure{file}{caption}` (the line is in `jmp.tex`, commented out). One figure at most.
 - **other-papers**: each other paper or chapter: exact title, coauthors (linked), status, question,
-  approach, main finding. Most advanced first.
+  approach, main finding, and for joint work who did what (including work with CDC). Most advanced
+  first.
+- **software** (optional; uncomment it in `Letter-sections.tex`): when your software or open-source work
+  is substantial enough to stand alone. Each project: what it does, what you built in it (link the
+  merged pull requests or releases), and who uses it.
 - **future-research-agenda**: two to four concrete projects, how they build on your work, and what is
   already in hand (data access, collaborators, pilot results, funding).
-- **other-activities**: software and open-source contributions (linked), presentations and invited
-  seminars, internships and fellowships, refereeing, organizing, mentoring, awards.
+- **other-activities**: software and open-source contributions (unless they have their own section),
+  presentations and invited seminars, internships and fellowships, refereeing, organizing, mentoring,
+  awards.
 - **teaching**: courses you assisted (with the instructor and semester), your responsibilities, sizes,
   anything you introduced, courses you taught yourself, workshops. Mention evaluations only if CDC asks.
+  What you are prepared to teach comes from `\ReadyToTeach`.
 - **conclusion**: usually CDC's alone. Add a factual closing sentence only if he asks for one.
 
 ## Citations: `Letter.bib`
@@ -91,7 +111,8 @@ something. Prefer a link to the paper over a citation where a link will do.
 
 Add a folder for each application with its `opportunity.md` (posting, deadlines, how the letter is
 delivered, what it should mention), and a row in `INDEX.md`. See `letter-opportunities/README.md`. CDC
-sets each letter's destination himself; leave the `Name-Of-*.tex` files alone.
+sets each letter's destination himself; leave the `Name-Of-*.tex` files alone. Where a paragraph on why
+you suit the destination would help, give him the facts for it in `opportunity.md` (see the example).
 
 ## Outreach email: `email-templates/`
 
@@ -101,6 +122,8 @@ Optional: drafts of email to people at the places you apply, which CDC can send.
 ## Before you hand it over
 
 - [ ] Every placeholder in `student-macros.ltx` and the sections is replaced.
+- [ ] Degree date, fields and what you can teach are filled in.
+- [ ] Every joint paper says who did what.
 - [ ] Every link is tested; papers link to the papers.
 - [ ] No evaluative language, no comparisons, no fact told twice.
 - [ ] No bracketed questions, notes or `TODO`s left in the sections.

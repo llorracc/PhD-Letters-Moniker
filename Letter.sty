@@ -83,6 +83,11 @@
 % - The script's final build also creates cdc-final.flag, which removes the
 %   red markers. \cdctodo{...} stays red in every build, so nothing unsettled
 %   goes out unnoticed.
+% - \cdcoptional{<name>}{<what goes here>} marks a place where the advisor MAY
+%   add a passage: a comparison with other students (after the opening), his
+%   account of work done with him (in Other Work), a paragraph on fit for one
+%   destination (before the closing). It prints the passage if the advisor
+%   wrote one, and otherwise nothing, with no marker in any build.
 \newif\ifCDCBuild \CDCBuildfalse
 \IfFileExists{\latexroot/cdc-build.flag}{\CDCBuildtrue}{}
 \newif\ifCDCFinal \CDCFinalfalse
@@ -97,6 +102,10 @@
       {\cdcmarker{#2 (saynicethings/#1.tex)}}%
   \else
     \cdcmarker{#2}%
+  \fi}
+\newcommand{\cdcoptional}[2]{%
+  \ifCDCBuild
+    \IfFileExists{\saynicethings/#1.tex}{\input{\saynicethings/#1.tex}}{}%
   \fi}
 
 % Section headings in a letter class; keep each heading with its first paragraph
@@ -125,8 +134,43 @@
       {\bibliography{\latexroot/Letter}}%
   \fi}
 
-% \LetterIfEmpty{\macro}{if empty}{if not}: true when \macro expands to nothing
+% \LetterIfEmpty{\macro}{if empty}{if not}: true when \macro expands to nothing.
+% (\ifx\macro\empty does not work here: \newcommand makes \long macros, which
+% never match \empty, so an empty \newcommand would count as set.)
 \newcommand{\LetterIfEmpty}[3]{\if\relax\detokenize\expandafter{#1}\relax #2\else #3\fi}
+% \LetterIfSet{\macro}{text}: prints text only when \macro is not empty
+\newcommand{\LetterIfSet}[2]{\LetterIfEmpty{#1}{}{#2}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% SENTENCES BUILT FROM student-macros.ltx (each prints only what is filled in)
+% ═══════════════════════════════════════════════════════════════════════════
+% Citizenship and visa, e.g. "Spock is a German national on an F-1 visa and is
+% eligible for three years of STEM OPT." Prints nothing when \VisaType is empty.
+\newcommand{\VisaStatement}{%
+  \LetterIfSet{\VisaType}{%
+    \PersonName{} \LetterIfEmpty{\Nationality}{holds}{is \Nationality{} on} \VisaType%
+    \LetterIfEmpty{\STEMOPTYears}{.}{ and is eligible for \STEMOPTYears{} years of
+      \href{https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students}{STEM OPT}.}}}
+
+% Degree date and job-market fields, e.g. "Spock expects to receive the PhD in
+% May 2027. Spock's primary field is macroeconomics; the secondary field is
+% public economics."
+\newcommand{\DegreeStatement}{%
+  \LetterIfSet{\ExpectedDegree}{\PersonName{} expects to receive the PhD in \ExpectedDegree. }%
+  \LetterIfSet{\PrimaryField}{\PersonName's primary field is \PrimaryField%
+    \LetterIfEmpty{\SecondaryField}{. }{; the secondary field is \SecondaryField. }}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% A FIGURE (one at most; scrlttr2 has no floats, so it stays where it is put)
+% ═══════════════════════════════════════════════════════════════════════════
+% \LetterFigure[<width as a fraction of the line>]{<file in Figures/>}{<caption>}
+% Default width 0.8. It is labeled "Figure:", never numbered.
+\newcommand{\LetterFigure}[3][0.8]{%
+  \par\Needspace{0.3\textheight}\medskip
+  \begin{center}
+    \includegraphics[width=#1\linewidth,height=0.32\textheight,keepaspectratio]{\latexroot/Figures/#2}\par\smallskip
+    \parbox{0.85\linewidth}{\small\textit{Figure:} #3}
+  \end{center}\medskip}
 
 % ═══════════════════════════════════════════════════════════════════════════
 % LETTERHEAD, TITLE, SIGNATURE

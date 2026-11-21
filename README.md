@@ -11,8 +11,9 @@ the structure, send back as a pull request (see "Suggest improvements" below).
 
 | File or folder | What it is | Who edits it |
 |---|---|---|
-| `student-macros.ltx` | your facts in one place: name, field, year, links, JMP title, pronouns, visa, the letter's opening sentence | you |
-| `Subfiles/*.tex` | the letter's sections (intro, background, jmp, other-papers, future-research-agenda, other-activities, teaching, conclusion) | you |
+| `student-macros.ltx` | your facts in one place: name, field, year, degree date, job-market fields, links, JMP title, what you can teach, pronouns, visa, the letter's opening sentence | you |
+| `Subfiles/*.tex` | the letter's sections (intro, background, jmp, other-papers, software (optional), future-research-agenda, other-activities, teaching, conclusion) | you |
+| `Figures/` | the file for one optional figure from your job market paper (`\LetterFigure`, in `Subfiles/jmp.tex`) | you |
 | `Letter-sections.tex` | which sections print, in order | you |
 | `Letter.bib` | the references you cite | you |
 | `letter-opportunities/` | one folder per application: posting, deadlines, how the letter is delivered | you |

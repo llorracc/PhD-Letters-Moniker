@@ -22,6 +22,10 @@ letter_sent_date: ""
 
 Summarize in your own words why the program fits your research (dissertation topic, methods, policy relevance). Your advisor can use this when tailoring the letter or email.
 
+## Facts for a paragraph on fit
+
+For a destination like this one, CDC may write a paragraph on why you suit it. Give him the facts, each specific and linked: people there whose work you build on, their data or models you use, earlier contact or work with them, and what you would do there. Facts only; he writes the judgment.
+
 ## Letter / portal checklist
 
 - [ ] Does the application ask for a **generic** letter or **program-specific** wording (e.g. "PhD Dissertation Intern," summer dates)?

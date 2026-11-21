@@ -1,0 +1,19 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{software}{}\par\section{Software}\whenintegrated{\label{sec:software}}
+
+% Optional section. It prints only if Letter-sections.tex includes it: use it when your software or
+% open-source work (Econ-ARK, for example) is substantial enough to stand on its own; otherwise list
+% such work under Other Activities. For each project: what it does, what you built in it (link the
+% merged pull requests or releases), and who uses it.
+
+\PersonName{} % TODO: each project, what you built in it (linked), and who uses it
+
+\cdcinsert{software}{the advisor's assessment of the software work}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}
