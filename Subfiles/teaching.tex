@@ -1,0 +1,14 @@
+\input{./relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{teaching}{}\par\section{Teaching}\whenintegrated{\label{sec:teaching}}
+
+\PersonName{} % TODO: courses assisted (with the instructor), evaluations if appropriate, other teaching experience
+
+\cdcinsert{teaching}{the advisor's assessment of the teaching}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

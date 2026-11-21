@@ -1,0 +1,74 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*-
+%
+% YOUR FACTS, IN ONE PLACE. Replace every placeholder below; the letter and its
+% sections use these macros everywhere, so a fact is changed once, here.
+% ("Mr Spock" is the template's placeholder student.)
+
+% =============================================================================
+% NAME AND PROGRAM
+% =============================================================================
+\newcommand{\FullName}{Mr Spock}          % as it should appear in the letter
+\newcommand{\PersonName}{Spock}           % the name used after the first mention
+\newcommand{\FamilyName}{Spock}
+
+\newcommand{\Field}{economics}
+\newcommand{\Year}{sixth-year}
+\newcommand{\StudentInstitution}{Johns Hopkins University}
+
+
+% =============================================================================
+% LINKS
+% =============================================================================
+\newcommand{\Website}{https://example.edu/your-profile}
+\newcommand{\JMP}{https://example.edu/your-jmp.pdf}
+% A stable public URL that always returns your latest CV. When it is set,
+% ./Letter-make.sh refreshes JMFiles/CV.pdf from it (see JMFiles/README.md).
+\newcommand{\CVUrl}{}
+
+\newcommand{\NameLink}{\href{\Website}{\textbf{\FullName}}}
+
+% The letter's opening, in the advisor's voice: who you are and how he knows you. Facts only.
+% (A supplementary letter from someone who is not your main advisor says so here.)
+\newcommand{\LetterOpening}{I write to recommend \NameLink, a \Year{} PhD student in \Field{} at \StudentInstitution. I am \hisOrHer{} principal advisor.}
+
+% =============================================================================
+% JOB MARKET PAPER
+% =============================================================================
+\newcommand{\JMPTitle}{Title of Job Market Paper}
+
+% =============================================================================
+% CITIZENSHIP AND VISA (optional: leave empty if not applicable)
+% =============================================================================
+\newcommand{\Nationality}{}          % e.g. German national
+\newcommand{\VisaType}{}             % e.g. F-1 visa
+\newcommand{\STEMOPTYears}{}         % e.g. three
+
+% `yes` drops the citizenship / work-authorization paragraph from Subfiles/background.tex
+% (useful where an application portal collects visa status separately).
+\newcommand{\OmitBackgroundVisaParagraph}{no}
+
+\newcommand{\VisaStatement}{%
+  \ifx\VisaType\empty%
+  \else%
+    \PersonName{} is a \Nationality{} on a \VisaType{}%
+    \ifx\STEMOPTYears\empty%
+      .%
+    \else%
+      {} and is eligible for \STEMOPTYears{} years of \href{https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students}{STEM OPT}.%
+    \fi%
+  \fi%
+}
+
+% =============================================================================
+% PRONOUNS: set each pair to your own (e.g. she/her, they/them)
+% =============================================================================
+\newcommand{\heOrshe}{he}
+\newcommand{\HeOrShe}{He}
+\newcommand{\himOrHer}{him}
+\newcommand{\HimOrHer}{Him}
+\newcommand{\hisOrHer}{his}
+\newcommand{\HisOrHer}{His}
+\newcommand{\hisOrHers}{his}
+\newcommand{\HisOrHers}{His}
+\newcommand{\himselfOrHerself}{himself}
+\newcommand{\HimselfOrHerself}{Himself}

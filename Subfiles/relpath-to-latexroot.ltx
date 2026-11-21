@@ -1,0 +1,19 @@
+% -*- mode: LaTeX; TeX-PDF-mode: t; -*-
+% Set \latexroot and load path configurations
+
+% Define latexroot - points to the shared directory root
+\def\latexroot{..}
+
+% Define project name
+\input{\latexroot/@local/_projectname.ltx}
+
+% Load main path configuration (sets up \input@path and other paths)
+\input{\latexroot/@resources/tex-paths.ltx}
+
+% Backward compatibility: define \LaTeXInputs for old code
+\providecommand{\LaTeXInputs}{\latexroot/@local}
+
+% For subfiles: also load econtex paths
+\InputIfFileExists{\latexroot/@local/econtexPaths}{}{}
+\InputIfFileExists{\latexroot/@resources/econtexPaths}{}{}
+

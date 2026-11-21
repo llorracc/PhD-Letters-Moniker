@@ -1,0 +1,16 @@
+\input{./relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{otheractivities}{}\par\section{Other Activities}\whenintegrated{\label{sec:otheractivities}}
+
+% Service, conferences, mentoring, open-source contributions, awards. Link each.
+
+% TODO
+
+\cdcinsert{other-activities}{the advisor's comments on these activities}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

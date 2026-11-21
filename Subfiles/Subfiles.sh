@@ -1,10 +1,9 @@
 #!/bin/bash
 
-latexmk -C
-
 for f in *.tex; do
-    latexmk "$f"
+    pdflatex -file-line-error  -interaction=nonstopmode "$f"
 done
 
-latexmk -c
-
+for ext in bbl aux dep log out upa upb gz fls fdb_latexmk; do
+    rm -f *.$ext
+done

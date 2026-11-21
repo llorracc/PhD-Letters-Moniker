@@ -1,0 +1,14 @@
+\input{./relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{otherwork}{}\par\section{Other Work}\whenintegrated{\label{sec:other}}
+
+Beyond \hisOrHer{} job market paper, \PersonName{} has % TODO: other chapters, papers, or projects, each linked
+
+\cdcinsert{other-papers}{the advisor's comments on the other work}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

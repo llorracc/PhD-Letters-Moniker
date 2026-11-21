@@ -1,0 +1,24 @@
+# Generated email files
+preview-emails/
+*.eml
+
+# Backup files
+*.bak
+*~
+
+# Temporary files
+*.tmp
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Excel/Office files
+*.xlsx
+*.xls
+Email List with Info.xlsx

@@ -1,0 +1,84 @@
+{
+  "name": "LaTeX PhD Recommendation Letters",
+  "build": {
+    "dockerfile": "Dockerfile.fast",
+    "context": ".."
+  },
+  
+  // Features to add to the dev container
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    }
+  },
+
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "latex-workshop.latex.autoBuild.run": "never",
+        "latex-workshop.latex.recipe.default": "latexmk",
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk",
+            "tools": [
+              "latexmk"
+            ]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-pdf",
+              "%DOC%"
+            ]
+          }
+        ],
+        "latex-workshop.view.pdf.viewer": "tab",
+        "files.associations": {
+          "*.tex": "latex",
+          "*.ltx": "latex",
+          "*.sty": "latex",
+          "*.cls": "latex",
+          "*.bib": "bibtex"
+        }
+      },
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "valentjn.vscode-ltex",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+
+  // Set environment variables
+  "containerEnv": {
+    "TEXMFHOME": "/usr/local/texlive/texmf-local",
+    "PATH": "/usr/local/texlive/bin/x86_64-linux:${localEnv:PATH}"
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "bash -c 'echo \"Container ready! Run latexmk Letter.tex to compile.\"'",
+
+  // Set the default user to vscode (non-root)
+  "remoteUser": "vscode",
+
+  // Mount the texlive cache to speed up subsequent builds
+  "mounts": [
+    "source=texlive-cache,target=/usr/local/texlive,type=volume"
+  ]
+}
+
