@@ -635,8 +635,8 @@ private
 
 # Local symlinks to other student directories (add your own local names if needed)
 
-# Exception: Don't ignore relpath-to-latexroot.ltx files (they are needed)
-!relpath-to-latexroot.ltx
+# Exception: never ignore the .relpath-to-latexroot.ltx files (each folder of .tex files needs one)
+!.relpath-to-latexroot.ltx
 
 # Files that exist only in the advisor's throwaway build copy; never commit them
 cdc-build.flag
