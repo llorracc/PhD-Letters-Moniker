@@ -14,10 +14,11 @@ Refer to yourself with the macros from `student-macros.ltx`: `\PersonName{}`, `\
 ## Facts are yours; judgments are CDC's
 
 Write what you did, specifically, and let the specifics speak. Leave every judgment to CDC: how good the
-work is, how you compare with others, what it says about you. His passages go where the red
-`[CDC: ...]` markers are, and you will not see them. He may also add passages where nothing is marked:
-news since his first letter, a comparison with other students after the opening, his own account of work
-you did with him, a paragraph on why you suit a particular destination, and an offer to discuss you.
+work is, how you compare with others, what it says about you. His overall assessment and his closing go
+where the two red `[CDC: ...]` markers are, and you will not see them. He may also add a passage where
+nothing is marked: a comment in any section, news since his first letter, a comparison with other
+students, his own account of work you did with him, a paragraph on why you suit a particular destination,
+and an offer to discuss you.
 
 - Write: "\PersonName{}'s paper estimates a life-cycle model with administrative tax data covering ten
   million households." Not: "The paper makes an important contribution."

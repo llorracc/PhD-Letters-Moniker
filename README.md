@@ -29,8 +29,9 @@ the structure, send back as a pull request (see "Suggest improvements" below).
 ./Letter-make.sh
 ```
 
-This writes `Letter.pdf`, plus a PDF of each section in `Subfiles/`. Red `[CDC: ...]` markers show where
-CDC's own passages go; in his build they are replaced by his text. The build stops with a message if a
+This writes `Letter.pdf`, plus a PDF of each section in `Subfiles/`. Two red `[CDC: ...]` markers show where
+CDC's overall assessment and closing go; in his build they are replaced by his text, and he may add his
+own passages elsewhere. The build stops with a message if a
 citation is missing from `Letter.bib` or an entry is repeated. `SKIP_CV_SYNC=1 ./Letter-make.sh` skips
 refreshing `JMFiles/CV.pdf` from your CV's URL. Built PDFs are never committed.
 

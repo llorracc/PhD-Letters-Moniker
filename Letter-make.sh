@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build Letter.pdf (and a PDF of each section in Subfiles/) from this repository alone.
-# Red [CDC: ...] markers show where the advisor's own passages go: they live in a
-# folder you never see, and only the advisor's build script reads them.
+# Two red [CDC: ...] markers show where the advisor's assessment and closing go. His
+# passages live in a folder you never see, and only his build script reads them.
 #
 #   ./Letter-make.sh                 build
 #   SKIP_CV_SYNC=1 ./Letter-make.sh  build without refreshing JMFiles/CV.pdf from \CVUrl

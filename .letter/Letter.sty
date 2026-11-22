@@ -69,7 +69,8 @@
 % The advisor's own paragraphs (his judgments) live in a private folder that
 % the student never sees, beside this repository:
 %     ../PhD-RecLetters-private/saynicethings/<name>.tex
-% \cdcinsert{<name>}{<what goes here>} marks where one of them belongs.
+% \cdcinsert{<name>}{<what goes here>} marks a passage every letter needs: his
+% overall assessment (after the opening) and his closing judgment.
 %
 % - In the student's builds, and in any build of this repository by itself, a
 %   red [CDC: <what goes here>] marker shows the place. Nothing private is read.
@@ -81,12 +82,13 @@
 %   red markers. \cdctodo{...} stays red in every build, so nothing unsettled
 %   goes out unnoticed.
 % - \cdcoptional{<name>}{<what goes here>} marks a place where the advisor MAY
-%   add a passage: news since his first letter (before the opening), a
-%   comparison with other students (after the opening), his account of work
-%   done with him (in Other Work), a paragraph on fit for one destination and
-%   an offer to discuss the candidate (before the closing). It prints the
-%   passage if the advisor wrote one, and otherwise nothing, with no marker in
-%   any build.
+%   add a passage: his comments in each section, news since his first letter
+%   (before the opening), a comparison with other students (after the opening),
+%   his account of work done with him (in Other Work), a paragraph on fit for
+%   one destination and an offer to discuss the candidate (before the closing).
+%   It prints the passage if the advisor wrote one, and otherwise nothing, with
+%   no marker in any build, so a letter carries his comments only where they
+%   matter.
 \newif\ifCDCBuild \CDCBuildfalse
 \IfFileExists{\latexroot/cdc-build.flag}{\CDCBuildtrue}{}
 \newif\ifCDCFinal \CDCFinalfalse
