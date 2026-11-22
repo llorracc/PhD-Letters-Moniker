@@ -12,20 +12,21 @@ the structure, send back as a pull request (see "Suggest improvements" below).
 | File or folder | What it is | Who edits it |
 |---|---|---|
 | `student-macros.ltx` | your facts in one place: name, field, year, degree date, job-market fields, links, JMP title, what you can teach, pronouns, visa, the letter's opening sentence | you |
-| `Subfiles/*.tex` | the letter's sections (intro, background, jmp, other-papers, software (optional), future-research-agenda, other-activities, teaching, conclusion) | you |
+| `Subfiles/*.tex` | the letter's sections (intro, background, jmp, other-papers, software (optional), policy (optional), future-research-agenda, other-activities, teaching, conclusion) | you |
 | `Figures/` | the file for one optional figure from your job market paper (`\LetterFigure`, in `Subfiles/jmp.tex`) | you |
 | `Letter-sections.tex` | which sections print, in order | you |
 | `Letter.bib` | the references you cite | you |
 | `letter-opportunities/` | one folder per application: posting, deadlines, how the letter is delivered | you |
 | `email-templates/` | outreach email to people at the places you apply (optional) | you |
 | `JMFiles/` | your CV and other job-market files | you |
-| `Name-Of-*.tex`, `EmailAddress-To-Which-Letter-Will-Be-Sent.txt` | the destination of one letter | CDC: leave them alone |
-| `Letter.tex`, `Letter.sty`, `advisor-macros.ltx` | the letter's layout, letterhead and machinery | nobody, except to fix the template |
+| `NEWS.md` | news during the season (a revise-and-resubmit, a new draft, a prize), for an updated letter | you |
+| `Letter.tex`, `Letter-make.sh` | the letter itself, and the script that builds it | nobody, except to fix the template |
+| `.letter/` (hidden) | the machinery: layout, letterhead, bibliography style, CV sync, and default destination names that CDC's build replaces | nobody, except to fix the template |
 
 ## Building the letter
 
 ```bash
-./Letter-make.sh          # or: make
+./Letter-make.sh
 ```
 
 This writes `Letter.pdf`, plus a PDF of each section in `Subfiles/`. Red `[CDC: ...]` markers show where

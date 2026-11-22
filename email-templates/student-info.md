@@ -1,6 +1,6 @@
 # Student Information
 
-> **Need help?** See `student-info-TEMPLATE.md` for full documentation and examples.
+> **Need help?** See `README.md` in this folder for what each value does.
 >
 > **Estimated time:**
 > - Sections 1–3 (required): ~20 minutes

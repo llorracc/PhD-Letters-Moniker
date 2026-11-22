@@ -1,0 +1,234 @@
+% Letter.sty: layout and machinery for Letter.tex (KOMA-Script scrlttr2).
+% Students do not need to edit this file, or anything else in .letter/.
+
+% Bibliography style: .letter/econtex.bst
+\providecommand{\econtexBibStyle}{\latexroot/.letter/econtex}
+
+\KOMAoptions{addrfield=false,backaddress=false}
+% Margins for US letter paper; enlargefirstpage allows more content on page 1
+\KOMAoptions{DIV=12,enlargefirstpage=true}
+
+% Keyname for paper
+\newcommand{\texname}{Letter}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs,multirow,threeparttable,dcolumn,array,multicol}
+\usepackage{subfiles}
+\usepackage{xcolor}
+% Load url with options BEFORE hyperref (which loads url without options)
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{xr-hyper}  % cross-references between documents (\externaldocument in subfiles)
+\usepackage{scrlayer-scrpage}
+\usepackage{catchfile}  % reads the destination's files (Name-Of-*.tex, Salutation.tex)
+% Minimal thebibliography stub so natbib can renew it under scrlttr2
+\makeatletter
+\providecommand\bibname{References}
+\providecommand\@biblabel[1]{[#1]}
+\newenvironment{thebibliography}[1]{\section*{\bibname}\begin{list}{\@biblabel{\arabic{enumi}}}{\usecounter{enumi}}}{\end{list}}
+\makeatother
+\usepackage[authoryear,round]{natbib}
+\renewcommand{\bibsection}{\par\bigskip\noindent\textbf{\large References}\par\medskip}
+\usepackage{ifthen}
+\usepackage{dirtytalk}  % \say{} for quotations
+
+% Colors used in subfiles
+\definecolor{darkblue}{rgb}{0.1,0.094,0.3}
+\definecolor{darkred}{rgb}{0.3,0,0}
+\hypersetup{colorlinks=true,linkcolor=darkblue,urlcolor=darkblue,citecolor=darkblue}
+
+% Lists that stay inside the text margin
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=3em,itemsep=0.3em,parsep=0pt,topsep=0.5em}
+\setlist[enumerate]{leftmargin=3em,itemsep=0.3em,parsep=0pt,topsep=0.5em}
+
+\usepackage{microtype}
+\usepackage{needspace}
+
+% Compat for subfile-only macros used in content
+\newboolean{Web}\setboolean{Web}{false}
+\newboolean{showPageHead}\setboolean{showPageHead}{false}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% \whenstandalone{...} runs only when a subfile is compiled on its own;
+% \whenintegrated{...} runs only when it is part of Letter.tex.
+% ═══════════════════════════════════════════════════════════════════════════
+\makeatletter
+\newcommand{\whenintegrated}[1]{\@ifundefined{entrypoint}{}{#1}}
+\newcommand{\whenstandalone}[1]{\@ifundefined{entrypoint}{#1}{}}
+\@ifclassloaded{subfiles}{}{\newcommand{\entrypoint}{true}}
+\makeatother
+\providecommand{\notinsubfile}[1]{\whenintegrated{#1}}
+\providecommand{\onlyinsubfile}[1]{\whenstandalone{#1}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% THE ADVISOR'S PASSAGES
+% ═══════════════════════════════════════════════════════════════════════════
+% The advisor's own paragraphs (his judgments) live in a private folder that
+% the student never sees, beside this repository:
+%     ../PhD-RecLetters-private/saynicethings/<name>.tex
+% \cdcinsert{<name>}{<what goes here>} marks where one of them belongs.
+%
+% - In the student's builds, and in any build of this repository by itself, a
+%   red [CDC: <what goes here>] marker shows the place. Nothing private is read.
+% - Only the advisor's build script reads the private folder. It builds in a
+%   throwaway copy and creates cdc-build.flag there; the private folder merely
+%   sitting next to this repository is NOT enough. That way no PDF built in
+%   this repository can ever contain the advisor's text.
+% - The script's final build also creates cdc-final.flag, which removes the
+%   red markers. \cdctodo{...} stays red in every build, so nothing unsettled
+%   goes out unnoticed.
+% - \cdcoptional{<name>}{<what goes here>} marks a place where the advisor MAY
+%   add a passage: news since his first letter (before the opening), a
+%   comparison with other students (after the opening), his account of work
+%   done with him (in Other Work), a paragraph on fit for one destination and
+%   an offer to discuss the candidate (before the closing). It prints the
+%   passage if the advisor wrote one, and otherwise nothing, with no marker in
+%   any build.
+\newif\ifCDCBuild \CDCBuildfalse
+\IfFileExists{\latexroot/cdc-build.flag}{\CDCBuildtrue}{}
+\newif\ifCDCFinal \CDCFinalfalse
+\IfFileExists{\latexroot/cdc-final.flag}{\CDCFinaltrue}{}
+\newcommand{\saynicethings}{\latexroot/../PhD-RecLetters-private/saynicethings}
+\newcommand{\cdcmarker}[1]{\ifCDCFinal\else\textcolor{red}{[CDC: #1]}\fi}
+\newcommand{\cdctodo}[1]{\textcolor{red}{[CDC TODO: #1]}}
+\newcommand{\cdcinsert}[2]{%
+  \ifCDCBuild
+    \IfFileExists{\saynicethings/#1.tex}%
+      {\input{\saynicethings/#1.tex}}%
+      {\cdcmarker{#2 (saynicethings/#1.tex)}}%
+  \else
+    \cdcmarker{#2}%
+  \fi}
+\newcommand{\cdcoptional}[2]{%
+  \ifCDCBuild
+    \IfFileExists{\saynicethings/#1.tex}{\input{\saynicethings/#1.tex}}{}%
+  \fi}
+
+% Section headings in a letter class; keep each heading with its first paragraph
+\providecommand{\section}[1]{\par\Needspace{4\baselineskip}\vspace{0.6\baselineskip}\noindent\textbf{#1}\par\smallskip\nopagebreak}
+\providecommand{\minisec}[1]{\par\Needspace{3\baselineskip}\vspace{0.4\baselineskip}\noindent\textbf{#1}\par\smallskip\nopagebreak}
+\providecommand{\newblock}{}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% BIBLIOGRAPHY
+% ═══════════════════════════════════════════════════════════════════════════
+% The student's references go in Letter.bib, the only bibliography file the
+% student's builds read. (The advisor's build may add cdc-references.bib for
+% works his own passages cite.) The References section prints only when the
+% letter cites something: a letter with no \cite gets no empty heading and no
+% BibTeX error.
+\newif\ifLetterHasCitations \LetterHasCitationsfalse
+\makeatletter
+\def\citation#1{\global\LetterHasCitationstrue}  % \citation lines in the .aux from the previous run
+\@ifclassloaded{subfiles}{}{\bibliographystyle{\econtexBibStyle}}
+\makeatother
+\newcommand{\LetterReferences}{%
+  \ifLetterHasCitations
+    \clearpage
+    \IfFileExists{\latexroot/cdc-references.bib}%
+      {\bibliography{\latexroot/Letter,\latexroot/cdc-references}}%
+      {\bibliography{\latexroot/Letter}}%
+  \fi}
+
+% \LetterIfEmpty{\macro}{if empty}{if not}: true when \macro expands to nothing.
+% (\ifx\macro\empty does not work here: \newcommand makes \long macros, which
+% never match \empty, so an empty \newcommand would count as set.)
+\newcommand{\LetterIfEmpty}[3]{\if\relax\detokenize\expandafter{#1}\relax #2\else #3\fi}
+% \LetterIfSet{\macro}{text}: prints text only when \macro is not empty
+\newcommand{\LetterIfSet}[2]{\LetterIfEmpty{#1}{}{#2}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% SENTENCES BUILT FROM student-macros.ltx (each prints only what is filled in)
+% ═══════════════════════════════════════════════════════════════════════════
+% Citizenship and visa, e.g. "Spock is a German national on an F-1 visa and is
+% eligible for three years of STEM OPT." Prints nothing when \VisaType is empty.
+\newcommand{\VisaStatement}{%
+  \LetterIfSet{\VisaType}{%
+    \PersonName{} \LetterIfEmpty{\Nationality}{holds}{is \Nationality{} on} \VisaType%
+    \LetterIfEmpty{\STEMOPTYears}{.}{ and is eligible for \STEMOPTYears{} years of
+      \href{https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students}{STEM OPT}.}}}
+
+% Degree date and job-market fields, e.g. "Spock expects to receive the PhD in
+% May 2027. Spock's primary field is macroeconomics; the secondary field is
+% public economics."
+\newcommand{\DegreeStatement}{%
+  \LetterIfSet{\ExpectedDegree}{\PersonName{} expects to receive the PhD in \ExpectedDegree. }%
+  \LetterIfSet{\PrimaryField}{\PersonName's primary field is \PrimaryField%
+    \LetterIfEmpty{\SecondaryField}{. }{; the secondary field is \SecondaryField. }}}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% A FIGURE (one at most; scrlttr2 has no floats, so it stays where it is put)
+% ═══════════════════════════════════════════════════════════════════════════
+% \LetterFigure[<width as a fraction of the line>]{<file in Figures/>}{<caption>}
+% Default width 0.8. It is labeled "Figure:", never numbered.
+\newcommand{\LetterFigure}[3][0.8]{%
+  \par\Needspace{0.3\textheight}\medskip
+  \begin{center}
+    \includegraphics[width=#1\linewidth,height=0.32\textheight,keepaspectratio]{\latexroot/Figures/#2}\par\smallskip
+    \parbox{0.85\linewidth}{\small\textit{Figure:} #3}
+  \end{center}\medskip}
+
+% ═══════════════════════════════════════════════════════════════════════════
+% LETTERHEAD, TITLE, SIGNATURE
+% ═══════════════════════════════════════════════════════════════════════════
+% The advisor's details: .letter/advisor-macros.ltx. Paths to the logo and
+% signature images: advisor-local.ltx, which only the advisor's build supplies.
+\input{\latexroot/.letter/advisor-macros.ltx}
+\InputIfFileExists{\latexroot/advisor-local.ltx}{}{}
+
+\setkomavar{fromname}{\AdvisorLetterheadName}
+\setkomavar{fromaddress}{\AdvisorKOMAAddress}
+\setkomavar{firsthead}{}
+\setplength{sigbeforevskip}{0.5\baselineskip}
+
+\newcommand{\LetterLogo}{%
+  \LetterIfEmpty{\AdvisorLogoFile}{}{%
+    \IfFileExists{\AdvisorLogoFile}{\begin{center}\includegraphics[height=0.75in]{\AdvisorLogoFile}\end{center}}{}}}
+
+\setkomavar{signature}{%
+  \LetterIfEmpty{\AdvisorSignatureFile}{}{%
+    \IfFileExists{\AdvisorSignatureFile}{\includegraphics[height=0.5in]{\AdvisorSignatureFile}\\}{}}%
+  \AdvisorSignatureName\\
+  \AdvisorLetterheadLineOne, \AdvisorInstitution}
+\renewcommand*{\raggedsignature}{\raggedright}
+
+% Destination: Name-Of-*.tex and Salutation.tex. The advisor's build copies his
+% destination folder's files into the root of its build copy, where they take
+% precedence over the defaults in .letter/destination/. A file holding only a
+% comment counts as empty.
+\newcommand{\LetterReadName}[2]{%
+  \IfFileExists{\latexroot/#2}%
+    {\CatchFileDef{#1}{\latexroot/#2}{\endlinechar=-1 }}%
+    {\IfFileExists{\latexroot/.letter/destination/#2}%
+      {\CatchFileDef{#1}{\latexroot/.letter/destination/#2}{\endlinechar=-1 }}%
+      {\def#1{}}}}
+\LetterReadName{\NameOfProgram}{Name-Of-Program.tex}
+\LetterReadName{\NameOfPosition}{Name-Of-Position.tex}
+\LetterReadName{\NameOfDepartment}{Name-Of-Department.tex}
+\LetterReadName{\NameOfEmployer}{Name-Of-Employer.tex}
+% The salutation, e.g. "Dear Members of the Selection Committee:"; if none is
+% set, "Search Committee,".
+\LetterReadName{\LetterSalutation}{Salutation.tex}
+\LetterIfEmpty{\LetterSalutation}{\def\LetterSalutation{Search Committee,}}{}
+
+% "Recommendation of <name>", then the destination: the program if one is
+% named, otherwise position, department and employer, each on its own line.
+\newcommand{\LetterTitleBlock}{%
+  \begin{center}
+    \textbf{Recommendation of \FullName}%
+    \LetterIfEmpty{\NameOfProgram}{%
+      \LetterIfEmpty{\NameOfPosition}{}{\\ for \NameOfPosition}%
+      \LetterIfEmpty{\NameOfDepartment}{}{\\ \NameOfDepartment}%
+      \LetterIfEmpty{\NameOfEmployer}{}{\\ \NameOfEmployer}%
+    }{\\ for the \NameOfProgram}%
+  \end{center}}
+
+% Page number: bottom right, number only
+\clearpairofpagestyles
+\ofoot{\pagemark}
+\cfoot{}
+\renewcommand*\pagemark{\usekomafont{pagenumber}\thepage}
+\pagestyle{scrheadings}

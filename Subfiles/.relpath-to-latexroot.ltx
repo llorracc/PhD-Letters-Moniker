@@ -1,19 +1,9 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*-
-% Set \latexroot and load path configurations
-
-% Define latexroot - points to the shared directory root
-\def\latexroot{..}
-
-% Define project name
-\input{\latexroot/@local/_projectname.ltx}
-
-% Load main path configuration (sets up \input@path and other paths)
-\input{\latexroot/@resources/tex-paths.ltx}
-
-% Backward compatibility: define \LaTeXInputs for old code
-\providecommand{\LaTeXInputs}{\latexroot/@local}
-
-% For subfiles: also load econtex paths
-\InputIfFileExists{\latexroot/@local/econtexPaths}{}{}
-\InputIfFileExists{\latexroot/@resources/econtexPaths}{}{}
-
+% Paths for a build from this folder: every .tex file's folder has a file of this name.
+% When Letter.tex includes a section (Letter.sty then defines \entrypoint), the root's paths stand.
+\ifdefined\entrypoint\else
+  \def\latexroot{..}          % the repository's root is one level up
+  \def\projectname{Letter}    % the main document, ../Letter.tex
+  % Where LaTeX looks for Letter.sty and student-macros.ltx: the root, and .letter/ there
+  \makeatletter\def\input@path{{../}{../.letter/}}\makeatother
+\fi

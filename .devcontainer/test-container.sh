@@ -85,5 +85,5 @@ echo "✓ All tests passed!"
 echo "=========================================="
 echo ""
 echo "Container is ready for LaTeX development."
-echo "Run 'make test' or 'latexmk Letter.tex' to compile your document."
+echo "Run ./Letter-make.sh to compile the letter."
 

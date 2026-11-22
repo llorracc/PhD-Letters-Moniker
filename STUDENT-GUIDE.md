@@ -16,8 +16,8 @@ Refer to yourself with the macros from `student-macros.ltx`: `\PersonName{}`, `\
 Write what you did, specifically, and let the specifics speak. Leave every judgment to CDC: how good the
 work is, how you compare with others, what it says about you. His passages go where the red
 `[CDC: ...]` markers are, and you will not see them. He may also add passages where nothing is marked:
-a comparison with other students after the opening, his own account of work you did with him, and a
-paragraph on why you suit a particular destination.
+news since his first letter, a comparison with other students after the opening, his own account of work
+you did with him, a paragraph on why you suit a particular destination, and an offer to discuss you.
 
 - Write: "\PersonName{}'s paper estimates a life-cycle model with administrative tax data covering ten
   million households." Not: "The paper makes an important contribution."
@@ -78,11 +78,14 @@ can also use a different list for one destination.
 - **background**: undergraduate and master's education, predoctoral work (employer, title, dates, what
   you did, linked), and what it brought to your PhD. If your path was unusual (a career before the PhD,
   a move between programs or advisors, circumstances that shaped your interests), you may add the facts,
-  but only what you want mentioned; CDC decides whether it prints. The degree date, fields and visa
-  sentences come from the macros.
+  but only what you want mentioned; CDC decides whether it prints. Tell CDC about anything a committee
+  might misread (a sixth or later year, a leave, a change of advisor or field): he decides whether and
+  how the letter explains it. The degree date, fields and visa sentences come from the macros.
 - **jmp**: the question and why it matters, the data and methods, how you identify or estimate what you
   claim, the main findings with magnitudes, and what follows for the literature or for policy. Link the
-  paper, its code and its data where public. If it is joint work, one sentence on who did what.
+  paper, its code and its data where public. Say whose project it is: when and how it began, what you
+  designed yourself, and any data you collected or built; committees ask this most when the work grew
+  out of your advisor's own projects. If it is joint work, one sentence on who did what.
   Optionally, one figure a reader from another field can follow: put the file in `Figures/` and use
   `\LetterFigure{file}{caption}` (the line is in `jmp.tex`, commented out). One figure at most.
 - **other-papers**: each other paper or chapter: exact title, coauthors (linked), status, question,
@@ -91,11 +94,15 @@ can also use a different list for one destination.
 - **software** (optional; uncomment it in `Letter-sections.tex`): when your software or open-source work
   is substantial enough to stand alone. Each project: what it does, what you built in it (link the
   merged pull requests or releases), and who uses it.
+- **policy** (optional; uncomment it in `Letter-sections.tex`, and CDC may use it in place of teaching in
+  a letter to a central bank or other policy institution): each internship, fellowship or job there:
+  where and when, what you produced (memos, briefings, forecasts, models or code that staff went on to
+  use) and who used it, and any time you presented your work to policymakers or other non-economists.
 - **future-research-agenda**: two to four concrete projects, how they build on your work, and what is
   already in hand (data access, collaborators, pilot results, funding).
 - **other-activities**: software and open-source contributions (unless they have their own section),
-  presentations and invited seminars, internships and fellowships, refereeing, organizing, mentoring,
-  awards.
+  presentations and invited seminars, internships and fellowships (unless they are in policy),
+  refereeing, organizing, mentoring, awards.
 - **teaching**: courses you assisted (with the instructor and semester), your responsibilities, sizes,
   anything you introduced, courses you taught yourself, workshops. Mention evaluations only if CDC asks.
   What you are prepared to teach comes from `\ReadyToTeach`.
@@ -111,19 +118,26 @@ something. Prefer a link to the paper over a citation where a link will do.
 
 Add a folder for each application with its `opportunity.md` (posting, deadlines, how the letter is
 delivered, what it should mention), and a row in `INDEX.md`. See `letter-opportunities/README.md`. CDC
-sets each letter's destination himself; leave the `Name-Of-*.tex` files alone. Where a paragraph on why
-you suit the destination would help, give him the facts for it in `opportunity.md` (see the example).
+sets each letter's destination himself (the lines under its title, and its salutation). Where a paragraph
+on why you suit the destination would help, give him the facts for it in `opportunity.md` (see the
+example).
+
+## News during the season: `NEWS.md`
+
+When something happens that a committee should know (a revise-and-resubmit or acceptance, a new draft of
+the job market paper, a new paper, a prize), add a dated line with a link to `NEWS.md` and tell CDC. He
+decides whether an updated letter goes out, and writes the update himself.
 
 ## Outreach email: `email-templates/`
 
 Optional: drafts of email to people at the places you apply, which CDC can send. Start with
-`email-templates/QUICK-START.md`.
+`email-templates/README.md`.
 
 ## Before you hand it over
 
 - [ ] Every placeholder in `student-macros.ltx` and the sections is replaced.
 - [ ] Degree date, fields and what you can teach are filled in.
-- [ ] Every joint paper says who did what.
+- [ ] The job market paper says when it began and what you designed; every joint paper says who did what.
 - [ ] Every link is tested; papers link to the papers.
 - [ ] No evaluative language, no comparisons, no fact told twice.
 - [ ] No bracketed questions, notes or `TODO`s left in the sections.

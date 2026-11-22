@@ -20,8 +20,8 @@ for f in cdc-build.flag cdc-final.flag advisor-local.ltx cdc-references.bib; do
 done
 
 # If \CVUrl is set in student-macros.ltx, refresh JMFiles/CV.pdf when the remote PDF changes.
-if [ -f scripts/sync-cv-from-url.sh ]; then
-  bash scripts/sync-cv-from-url.sh || echo "Warning: CV sync reported an error; continuing with the letter build."
+if [ -f .letter/sync-cv-from-url.sh ]; then
+  bash .letter/sync-cv-from-url.sh || echo "Warning: CV sync reported an error; continuing with the letter build."
 fi
 
 latexmk -C Letter >/dev/null 2>&1
@@ -43,7 +43,9 @@ if [ -n "$problems$undefined" ]; then
 fi
 
 # A PDF of each section, for checking one section at a time.
-( cd Subfiles && ./Subfiles.sh >/dev/null 2>&1 )
+( cd Subfiles || exit
+  for f in *.tex; do pdflatex -file-line-error -interaction=nonstopmode "$f" >/dev/null 2>&1; done
+  rm -f ./*.aux ./*.bbl ./*.blg ./*.dep ./*.fdb_latexmk ./*.fls ./*.gz ./*.log ./*.out ./*.upa ./*.upb )
 
 latexmk -c Letter >/dev/null 2>&1
 rm -f Letter-make.log

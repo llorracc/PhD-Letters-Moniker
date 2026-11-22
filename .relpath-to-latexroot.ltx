@@ -1,18 +1,6 @@
 % -*- mode: LaTeX; TeX-PDF-mode: t; -*-
-% ======================================================================
-% This file defines the root path for the LaTeX project (latexroot)
-% It is the SINGLE SOURCE OF TRUTH for path management
-% Include this at the top of EVERY .tex file in the project
-% ======================================================================
-
-% Path from this file's directory to the project root
-% "." means this directory IS the root
-\def\latexroot{.}
-
-% Define project name (used in subfiles)
-\input{\latexroot/@local/_projectname.ltx}
-
-% Load project-specific path configurations
-% (this sets up search paths for resources, bibliography, etc.)
-\input{\latexroot/@resources/tex-paths.ltx}
-
+% Paths for a build from this folder: every .tex file's folder has a file of this name.
+\def\latexroot{.}           % this folder is the repository's root
+\def\projectname{Letter}    % the main document, Letter.tex
+% Where LaTeX looks for Letter.sty and student-macros.ltx: .letter/ holds the machinery
+\makeatletter\def\input@path{{.letter/}}\makeatother

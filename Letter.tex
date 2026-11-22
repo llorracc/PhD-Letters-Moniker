@@ -2,7 +2,7 @@
 \pdfinfoomitdate=1 \pdftrailerid{} \pdfsuppressptexinfo=-1 % reproducible PDF: an unchanged letter rebuilds byte-identical
 \input{.relpath-to-latexroot.ltx}  % paths (\latexroot)
 \documentclass[11pt]{scrlttr2}    % KOMA-Script letter class
-\usepackage{Letter}               % layout and machinery: Letter.sty
+\usepackage{Letter}               % layout and machinery: .letter/Letter.sty
 \input{student-macros.ltx}        % the student's facts, in one place
 
 \begin{document}
@@ -12,7 +12,7 @@
 
 \hfill \today
 
-% --- Advisor letterhead (values in advisor-macros.ltx; do not edit here) ---
+% --- Advisor letterhead (values in .letter/advisor-macros.ltx; do not edit here) ---
 \noindent \AdvisorLetterheadName\ \AdvisorLinks\\
 \AdvisorLetterheadLineOne\\
 \AdvisorLetterheadLineTwo\\
@@ -20,7 +20,9 @@
 
 \LetterTitleBlock
 
-\noindent Search Committee,\par\medskip
+\noindent \LetterSalutation\par\medskip  % "Search Committee," unless the advisor sets another
+
+\cdcoptional{update}{news since the advisor's first letter}
 
 \LetterOpening  % in student-macros.ltx
 
@@ -29,6 +31,8 @@
 \cdcoptional{comparison}{how the candidate compares with other students}
 
 \input{Letter-sections}  % which sections print: edit Letter-sections.tex
+
+\cdcoptional{offer-to-talk}{an offer to discuss the candidate}
 
 \closing{Sincerely,}
 \end{letter}

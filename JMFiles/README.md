@@ -12,11 +12,11 @@ Set **` \newcommand{\CVUrl}{...}`** in **`../student-macros.ltx`** to a **stable
 
 ### Automatic refresh when you run `./Letter-make.sh`
 
-If **` \CVUrl`** is non-empty, the first step of **`Letter-make.sh`** runs **`scripts/sync-cv-from-url.sh`**, which:
+If **` \CVUrl`** is non-empty, the first step of **`Letter-make.sh`** runs **`.letter/sync-cv-from-url.sh`**, which:
 
 1. Downloads the PDF from **` \CVUrl`** and compares it to **`JMFiles/CV.pdf`** (if the file is missing, it saves the download as the initial `CV.pdf`).
 2. If the PDF bytes are unchanged, it does nothing further.
-3. If the bytes changed, it runs **`pdftotext`** on the old and new files and uses **`scripts/cv_trivial_diff.py`** to drop common metadata/timestamp-style lines. If the remaining text is unchanged, it **replaces `CV.pdf`** quietly (layout/metadata-only update).
+3. If the bytes changed, it runs **`pdftotext`** on the old and new files and uses **`.letter/cv_trivial_diff.py`** to drop common metadata/timestamp-style lines. If the remaining text is unchanged, it **replaces `CV.pdf`** quietly (layout/metadata-only update).
 4. If the text change looks **substantive**, it **renames** the previous file to **`CV_YYYYMMDD_HHMMSS.pdf`**, saves the new download as **`CV.pdf`**, writes text extracts under **`CV-sync-review/`** (with **`previous_for_ai_review.txt`** and **`current_for_ai_review.txt`** symlinks), and prints instructions to **compare them (or ask an AI)** whether **`student-macros.ltx`**, **`Subfiles/`**, **`email-templates/`**, or **`letter-opportunities/`** need edits.
 
 Requirements: **`curl`**, **`pdftotext`** (Poppler), and **`python3`** (for the trivial-vs-substantive heuristic). To skip this step entirely: **`SKIP_CV_SYNC=1 ./Letter-make.sh`**.

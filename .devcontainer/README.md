@@ -21,11 +21,11 @@ This directory contains the configuration for a Docker-based development contain
 
 ## Working directory (important)
 
-The devcontainer **`context`** is the **repository root** (parent of `.devcontainer/`). After reopening in the container, the integrated terminal’s cwd should be that root—the folder containing **`Letter.tex`** and **`Makefile`**.
+The devcontainer **`context`** is the **repository root** (parent of `.devcontainer/`). After reopening in the container, the integrated terminal’s cwd should be that root—the folder containing **`Letter.tex`** and **`Letter-make.sh`**.
 
-## Make targets
+## Commands
 
-From the repo root: **`make`** (or **`make letter`**) runs **`./Letter-make.sh`**; **`make clean`** removes LaTeX's auxiliary files; **`make test`** checks the LaTeX installation.
+From the repo root: **`./Letter-make.sh`** builds the letter and a PDF of each section, and removes LaTeX's auxiliary files; **`bash .devcontainer/test-container.sh`** checks the LaTeX installation.
 
 ## Getting Started
 
@@ -37,19 +37,12 @@ From the repo root: **`make`** (or **`make letter`**) runs **`./Letter-make.sh`*
 
 2. **Compile the letter** (from repo root):
    ```bash
-   make letter
-   # or: latexmk Letter.tex
+   ./Letter-make.sh
    ```
 
-3. **Clean build files** (from repo root):
+3. **Verify LaTeX tools:**
    ```bash
-   make clean
-   # or: latexmk -c Letter.tex
-   ```
-
-4. **Verify LaTeX tools:**
-   ```bash
-   make test
+   bash .devcontainer/test-container.sh
    ```
 
 ## Features

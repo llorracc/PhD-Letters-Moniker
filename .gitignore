@@ -612,7 +612,8 @@ $RECYCLE.BIN/
 # Extra junk files for LaTeX
 *.dep
 *.vrb
-*.out# Spyder
+*.out
+# Spyder
 .spyderproject
 .spyproject
 # CV sync scratch files (Poppler/python temp extracts during Letter-make.sh)
