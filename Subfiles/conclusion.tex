@@ -1,0 +1,16 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\Needspace{14\baselineskip}% keep the heading with the closing and signature, which follow it
+\hypertarget{conclusion}{}\par\section{Conclusion}
+
+% Factual closing sentences, if any, go above the marker; the closing judgment is the advisor's.
+% For a particular destination CDC may add a paragraph on fit, from the facts in your
+% letter-opportunities/<folder>/opportunity.md.
+\cdcoptional{fit}{why the candidate suits this destination}
+
+\cdcinsert{conclusion}{the advisor's closing judgment}
+
+\end{document} \endinput

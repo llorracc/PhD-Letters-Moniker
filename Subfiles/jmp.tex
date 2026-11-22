@@ -1,0 +1,33 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{jmp}{}\par\section{Job Market Paper}\whenintegrated{\label{sec:jmp}}
+
+% Facts only: the question, the approach, the findings. Cite with \citet{key} / \citep{key}
+% and put each entry in Letter.bib; link the paper itself.
+
+\PersonName's \href{\JMP}{\textit{\JMPTitle}} addresses % TODO: one paragraph on question and approach
+
+% TODO: main findings and contribution.
+
+% Whose project this is: when and how it began, what you designed yourself (the question, the model,
+% the empirical strategy), and any data you collected or built, e.g. "\PersonName{} began the project
+% in the summer of 2024, designed the model, and assembled the data from county tax records." Committees
+% ask this most about work that grew out of an advisor's own projects (Econ-ARK, for example). Facts
+% only; CDC gives his own view of your independence.
+
+% If the paper is joint work: one sentence on who did what, e.g. "\PersonName{} built the model and
+% wrote the code; \href{https://example.edu}{Jane Doe} assembled the data." Committees discount joint
+% work whose division of labor the letter does not state.
+
+% Optional: one figure from the paper that a reader from another field can follow. Put the file in
+% Figures/ and uncomment the line below; [0.6] sets its width as a fraction of the line (default 0.8).
+% \LetterFigure[0.6]{your-figure.pdf}{What the figure shows, in a sentence or two.}
+
+\cdcoptional{jmp}{the advisor's assessment of the job market paper}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

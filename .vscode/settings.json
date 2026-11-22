@@ -1,0 +1,133 @@
+{
+  // LaTeX Workshop settings
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.recipe.default": "latexmk",
+  "latex-workshop.latex.outDir": ".",
+  "latex-workshop.latex.clean.subfolder.enabled": true,
+  
+  // LaTeX recipes
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": [
+        "latexmk"
+      ]
+    },
+    {
+      "name": "pdflatex + bibtex + pdflatex * 2",
+      "tools": [
+        "pdflatex",
+        "bibtex",
+        "pdflatex",
+        "pdflatex"
+      ]
+    }
+  ],
+  
+  // LaTeX tools
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": [
+        "%DOCFILE%"
+      ],
+      "env": {}
+    }
+  ],
+  
+  // Clean patterns
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.snm",
+    "*.synctex.gz",
+    "*.nav",
+    "*.vrb",
+    "*.bcf",
+    "*.run.xml"
+  ],
+  
+  // PDF viewer
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  
+  // File associations
+  "files.associations": {
+    "*.tex": "latex",
+    "*.ltx": "latex",
+    "*.sty": "latex",
+    "*.cls": "latex",
+    "*.bib": "bibtex"
+  },
+  
+  // Editor settings for LaTeX
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": false,
+  
+  // Spell checking
+  "cSpell.language": "en-US",
+  "cSpell.enabled": true,
+  
+  // LTeX language tool settings
+  "ltex.language": "en-US",
+  "ltex.enabled": [
+    "latex",
+    "bibtex"
+  ],
+  
+  // Files to exclude from explorer
+  "files.exclude": {
+    "**/*.aux": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.log": true,
+    "**/*.synctex.gz": true,
+    "**/*.out": true,
+    "**/*.bbl": true,
+    "**/*.blg": true
+  },
+  
+  // Git settings
+  "git.ignoreLimitWarning": true
+}
+

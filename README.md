@@ -1,87 +1,97 @@
-## Material shared between CDC and [Moniker]
+# Recommendation letters from CDC: the student's template
 
-This is a repository for coordinating letters of recommendation between you and CDC. You are requested to leave the repository in better condition than you found it by making PR's to the upstream for anything which you think would improve the instructions and structure.
+This repository is where you and CDC (Christopher Carroll) build his letters of recommendation for you.
+You write the facts, in his voice; he adds his own judgments, which live in a separate folder you
+never see; his build merges the two. Read [`STUDENT-GUIDE.md`](STUDENT-GUIDE.md) before writing anything.
 
-There is a tension here: you will likely only find such things as you go about filling in your personal information. But you do not want to push your personal information into the template.
+Please leave the template better than you found it: anything that would improve the instructions or
+the structure, send back as a pull request (see "Suggest improvements" below).
 
-As a result, here is the suggested workflow. Please read the directions all the way through before beginning.
+## What's where
 
-1. Fork the repo and clone to your machine.
+| File or folder | What it is | Who edits it |
+|---|---|---|
+| `student-macros.ltx` | your facts in one place: name, field, year, degree date, job-market fields, links, JMP title, what you can teach, pronouns, visa, the letter's opening sentence | you |
+| `Subfiles/*.tex` | the letter's sections (intro, background, jmp, other-papers, software (optional), policy (optional), future-research-agenda, other-activities, teaching, conclusion) | you |
+| `Figures/` | the file for one optional figure from your job market paper (`\LetterFigure`, in `Subfiles/jmp.tex`) | you |
+| `Letter-sections.tex` | which sections print, in order | you |
+| `Letter.bib` | the references you cite | you |
+| `letter-opportunities/` | one folder per application: posting, deadlines, how the letter is delivered | you |
+| `email-templates/` | outreach email to people at the places you apply (optional) | you |
+| `JMFiles/` | your CV and other job-market files | you |
+| `NEWS.md` | news during the season (a revise-and-resubmit, a new draft, a prize), for an updated letter | you |
+| `Letter.tex`, `Letter-make.sh` | the letter itself, and the script that builds it | nobody, except to fix the template |
+| `.letter/` (hidden) | the machinery: layout, letterhead, bibliography style, CV sync, and default destination names that CDC's build replaces | nobody, except to fix the template |
 
-2. Create and switch to a branch called `personal-draft`.
+## Building the letter
 
-3. In `personal-draft`, fill in the materials with your information:
+```bash
+./Letter-make.sh
+```
 
-    a. Review content in `Letter.tex`. Replace {Mr} and {Spock} in `Letter.tex` with your personal and family names. Review the introductory sentence.
+This writes `Letter.pdf`, plus a PDF of each section in `Subfiles/`. Two red `[CDC: ...]` markers show where
+CDC's overall assessment and closing go; in his build they are replaced by his text, and he may add his
+own passages elsewhere. The build stops with a message if a
+citation is missing from `Letter.bib` or an entry is repeated. `SKIP_CV_SYNC=1 ./Letter-make.sh` skips
+refreshing `JMFiles/CV.pdf` from your CV's URL. Built PDFs are never committed.
 
-    b. Update `Subfiles/Intro.tex` to describe your work, fit for the position, etc.
+You need a TeX installation with `latexmk` (TeX Live or MacTeX). Without one, open the repository in
+VS Code's dev container (`.devcontainer/README.md`).
 
-    c. Update `Subfiles/JMP.tex` to describe your JMP and a few other relevant projects. 
-    
-    d. Update `Subfiles/Conclusion.tex` to summarize the argument.
+## The workflow
 
-    e. You do **not** need to adjust `EmailAddress-To-Which-Letter-Will-Be-Sent.txt`, `Name-Of-Program.tex`, or other similar `Name-Of` files; these are destination-specific inputs that CDC will use to generate the letters.
+Read it all before starting.
 
-4. *Commit locally only*. Do not push the branch. Your fork is public, because the original template repo is public, and you may not want all of the information you have filled in to be public.
+- **Fork and clone.** Fork this repository and clone your fork.
+- **Draft on a local branch.** Create and switch to a branch called `personal-draft`. There, fill in
+  `student-macros.ltx`, the sections in `Subfiles/`, `Letter-sections.tex` and `Letter.bib`, following
+  [`STUDENT-GUIDE.md`](STUDENT-GUIDE.md). Build and check the PDF.
+- **Commit locally only.** Do not push `personal-draft`: your fork is public, because this template is,
+  and what you have filled in should not be.
 
-    `git status --short --branch`
+  ```bash
+  git status --short --branch
+  git add student-macros.ltx Letter-sections.tex Letter.bib Subfiles/   # and anything else you edited
+  git diff --cached
+  git commit -m "Draft personal letter materials"
+  ```
+- **Suggest improvements (optional).** If you found ways to improve the instructions or the structure,
+  put them on a branch made from `main`, never from `personal-draft`:
 
-    `git add Letter.tex Subfiles/Intro.tex Subfiles/JMP.tex Subfiles/Conclusion.tex` (and any other edited files)
+  ```bash
+  git switch main
+  git switch -c template-suggestions
+  # make the general fixes, then
+  git add README.md                     # and any other changed files
+  git diff --cached
+  git commit -m "Improve template instructions"
+  git log -p main..template-suggestions # check that nothing personal is in it
+  git push -u origin template-suggestions
+  ```
 
-    `git diff --cached`
+  Open a pull request to `llorracc/PhD-Letters-Moniker` and wait for CDC to merge it. Then use
+  **Sync fork** on GitHub and update your clone:
 
-    `git commit -m "Draft personal letter materials"`
+  ```bash
+  git switch main
+  git pull --ff-only origin main
+  git switch personal-draft
+  git merge main                        # resolve any conflict before continuing
+  ```
+- **Make it private and rename it.** On GitHub: Settings → General → Danger Zone → **Leave fork network**,
+  then make the repository **Private**, then rename it `PhD-Letters-<MONIKER>`, where the moniker is your
+  family name followed by your initials (Jane Q. Doe is `DoeJQ`). Confirm that GitHub shows
+  **Private** before going on.
+- **Push your draft.** Point your clone at the renamed repository, merge your draft and push:
 
-5. If you have found improvements you would like to contribute, proceed with 5-7. Switch to `main` and create a branch called `template-suggestions`:
+  ```bash
+  git remote set-url origin https://github.com/YOUR-USERNAME/PhD-Letters-<MONIKER>.git
+  git switch main
+  git merge personal-draft
+  git push origin main
+  ```
+- **Invite CDC.** Add `llorracc` as a collaborator and tell CDC you have done so. **GitHub invitations
+  expire after seven days**; if he has not accepted by then, send it again.
 
-    `git switch main`
-
-    `git switch -c template-suggestions`
-
-    Add to this any general fixes you discovered while drafting which would improve the instructions, structure, and general efficiency of the workflow in the future. Do not merge in `personal-draft`. Commit them locally:
-
-    `git add README.md` (and any other changed files)
-
-    `git diff --cached`
-
-    `git commit -m "Improve template instructions"`
-
-6. Ensure that no personal information has been added:
-
-    `git log -p main..template-suggestions`
-
-    Then push `template-suggestions` only (e.g. **not** `personal-draft`):
-
-    `git push -u origin template-suggestions`
-
-7. Open a PR to the original repository. Wait for CDC to merge the PR before proceeding to step 8.
-
-8. Use `Sync Fork` on GitHub to update `main`. Then update the local clone by running:
-
-    `git switch main`
-
-    `git pull --ff-only origin main`
-    
-    <!-- *Optional cleanup if PR was opened*: after confirming the PR is merged and main is updated, delete `template-suggestions` locally and on GitHub. Consult GitHub guidance or AI; the specific deletion commands will depend on if CDC does a squash merge. -->
-
-9. Bring updated `main` into the `personal-draft` branch:
-
-    `git switch personal-draft`
-
-    `git merge main`
-
-    If Git reports a conflict, resolve it before continuing.
-
-10. Detach your fork, change visibility to private, and rename it by switching {Moniker} to your family name. Confirm that GitHub displays **Private** before proceeding.
-
-11. In your local clone, update `origin` to the renamed repository. Then merge `personal-draft` into `main` and push `main`:
-
-    `git remote set-url origin https://github.com/YOUR-USERNAME/PhD-Letters-NAME.git`
-
-    `git switch main`
-
-    `git merge personal-draft`
-
-    `git push origin main`
-
-12. You should now have a private repo with everything necessary to generate the letters. Add CDC as a collaborator.
+After that, keep the repository current: update your facts, sections and `letter-opportunities/` as
+your applications go out. CDC builds each letter from what is in the repository when he builds it.

@@ -1,0 +1,17 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\section{Introduction}
+
+% How the advisor knows you: courses, advising, RA work, coauthorship and other substantive
+% interactions, with dates. Facts only; the advisor adds his own judgments.
+
+I first met \PersonName{} in the PhD program in \Field{}. % TODO: semester/year and context
+
+% TODO: a second paragraph on research collaborations, independent work, or other highlights.
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

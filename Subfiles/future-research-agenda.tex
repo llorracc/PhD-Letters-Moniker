@@ -1,0 +1,16 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{futureresearch}{}\par\section{Future Research}\whenintegrated{\label{sec:futureresearch}}
+
+% Be specific: agendas, methods, and literatures you will build on.
+
+Looking forward, \PersonName{} intends to % TODO
+
+\cdcoptional{future-research-agenda}{the advisor's view of the research agenda}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

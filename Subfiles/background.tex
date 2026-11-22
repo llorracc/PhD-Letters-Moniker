@@ -1,0 +1,33 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{background}{}\par\section{Background}\whenintegrated{\label{sec:background}}
+
+% Undergraduate institution, honors, predoctoral programs, relevant work experience. Link each.
+\PersonName{} completed undergraduate work at \href{https://example.edu}{Institution Name}. % TODO: links and details
+
+% Optional: an unusual path, if you want it mentioned: a career before the PhD, a move between
+% programs or advisors, circumstances that shaped your research interests. Facts only, and only what
+% you are comfortable having in the letter; CDC decides whether it prints. Tell CDC, here or in
+% person, about anything a committee might misread: a sixth or later year, a leave, a change of
+% advisor or field. He decides whether and how the letter explains it.
+
+% Degree date and job-market fields: set \ExpectedDegree, \PrimaryField and \SecondaryField in
+% student-macros.ltx; whatever is filled in prints here.
+\DegreeStatement
+% CV: set \CVUrl in student-macros.ltx (a stable public URL that always returns your latest CV).
+\ifthenelse{\equal{\CVUrl}{}}{%
+  \HisOrHer{} \href{\Website}{webpage} links an up-to-date CV.%
+}{%
+  \HisOrHer{} current CV is \href{\CVUrl}{here}.%
+}
+
+% Citizenship and visa: fill \Nationality, \VisaType and optionally \STEMOPTYears in student-macros.ltx;
+% nothing prints while \VisaType is empty. Set \OmitBackgroundVisaParagraph to `yes` to drop it.
+\ifthenelse{\equal{\OmitBackgroundVisaParagraph}{yes}}{}{\VisaStatement}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

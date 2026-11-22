@@ -1,0 +1,20 @@
+\input{./.relpath-to-latexroot.ltx}
+\documentclass[\latexroot/\projectname]{subfiles}
+\externaldocument{\latexroot/\projectname}
+\begin{document}
+
+\hypertarget{policy}{}\par\section{Policy Work}\whenintegrated{\label{sec:policy}}
+
+% Optional section, for letters to central banks, international organizations and other policy
+% institutions. It prints only if Letter-sections.tex includes it; CDC's letter for such a destination
+% may print it in place of Teaching. For each internship, fellowship or job: where and when; what you
+% produced (memos, briefings, forecasts, model or code that staff went on to use), and who used it;
+% and any time you presented your work to policymakers or other non-economists. Link what is public.
+
+\PersonName{} % TODO: each internship, fellowship or job; what you produced, and who used it
+
+\cdcoptional{policy}{the advisor's assessment of the policy work}
+
+\ifthenelse{\boolean{Web}}{}{
+  \end{document} \endinput
+}

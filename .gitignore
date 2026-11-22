@@ -385,10 +385,8 @@ TSWLatexianTemp*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
-# Thumbnails
-._*
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
@@ -614,9 +612,14 @@ $RECYCLE.BIN/
 # Extra junk files for LaTeX
 *.dep
 *.vrb
-*.out# Spyder
+*.out
+# Spyder
 .spyderproject
 .spyproject
+# CV sync scratch files (Poppler/python temp extracts during Letter-make.sh)
+JMFiles/.cv-sync-*.txt
+JMFiles/.cv-sync-download.pdf
+
 # Things marked in any of these ways are kept only locally
 *_pri*
 *_pri_*
@@ -625,3 +628,20 @@ private
 
 # emacs .el files
 *.el
+
+*.pdf
+*.log
+.specstory/
+.specstory/**
+
+# Local symlinks to other student directories (add your own local names if needed)
+
+# Exception: never ignore the .relpath-to-latexroot.ltx files (each folder of .tex files needs one)
+!.relpath-to-latexroot.ltx
+
+# Files that exist only in the advisor's throwaway build copy; never commit them
+cdc-build.flag
+cdc-final.flag
+advisor-local.ltx
+cdc-references.bib
+Letter-make.log

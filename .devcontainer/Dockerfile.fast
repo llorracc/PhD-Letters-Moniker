@@ -1,0 +1,57 @@
+# Alternative Dockerfile using pre-built TeX Live image
+# This builds much faster (~2-3 minutes vs 15-30 minutes)
+# To use this, change "dockerfile": "Dockerfile" to "dockerfile": "Dockerfile.fast" in devcontainer.json
+
+FROM texlive/texlive:latest
+
+# Avoid prompts from apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install additional system utilities
+RUN apt-get update && apt-get install -y \
+    # Basic utilities
+    curl \
+    wget \
+    git \
+    sudo \
+    vim \
+    nano \
+    ca-certificates \
+    # Python for scripts
+    python3 \
+    python3-pip \
+    # PDF utilities
+    poppler-utils \
+    # Helpful utilities
+    tree \
+    unzip \
+    # Shell utilities
+    zsh \
+    && rm -rf /var/lib/apt/lists/*
+
+# Update TeX Live packages to latest
+RUN tlmgr update --self --all || true
+
+# Ensure latexmk is installed
+RUN tlmgr install latexmk || true
+
+# Create a non-root user 'vscode' for development  
+ARG USERNAME=vscode
+
+# Create vscode user with automatic UID/GID assignment
+RUN useradd -m -s /bin/bash $USERNAME && \
+    echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Set up texmf-local permissions
+RUN mkdir -p /usr/local/texlive/texmf-local && \
+    chown -R $USERNAME:$USERNAME /usr/local/texlive/texmf-local 2>/dev/null || true
+
+# Switch to non-root user
+USER $USERNAME
+
+# Set working directory
+WORKDIR /workspace
+
+# Default command
+CMD ["/bin/bash"]
+
